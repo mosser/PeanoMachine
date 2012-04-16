@@ -1,0 +1,150 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  
+  <groupId>net.modelbased.tools4se.peano</groupId>
+  <artifactId>net.modelbased.tools4se.peano.machine</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  
+  <name>The Amazing Machine of Peano</name>
+  <description>A Scala implementation of the Machine of Peano</description>
+  <inceptionYear>2012</inceptionYear>
+  
+  <scm>
+    <connection>scm:git:git@github.com:mosser/PeanoMachine.git</connection>
+    <url>scm:git:git@github.com:mosser/PeanoMachine.git</url>
+    <developerConnection>scm:git:git@github.com:mosser/PeanoMachine.git</developerConnection>
+  </scm>
+  
+  <licenses>
+    <license>
+      <name>LGPL</name>
+      <url>http://www.gnu.org/licenses/lgpl-3.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <organization>
+  	<name>SINTEF ICT / MOD team</name>
+  	<url>http://modelbased.net</url>
+  </organization>
+
+   <properties>
+    <maven.compiler.source>1.6</maven.compiler.source>
+    <maven.compiler.target>1.6</maven.compiler.target>
+    <encoding>UTF-8</encoding>
+    <scala.version>2.9.1</scala.version>
+  </properties>
+
+
+  <dependencies>
+    <dependency>
+      <groupId>org.scala-lang</groupId>
+      <artifactId>scala-library</artifactId>
+      <version>${scala.version}</version>
+    </dependency>
+
+    <dependency>
+	  <groupId>org.specs2</groupId> 
+      <artifactId>specs2_${scala.version}</artifactId> 
+      <version>1.6.1</version> 
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+   	  <groupId>org.specs2</groupId> 
+      <artifactId>specs2-scalaz-core_${scala.version}</artifactId> 
+      <version>6.0.1</version>
+      <scope>test</scope>
+    </dependency>
+    
+    <dependency>
+    	<groupId>junit</groupId>
+    	<artifactId>junit</artifactId>
+    	<version>4.10</version>
+    	<scope>test</scope>
+    </dependency>
+  </dependencies>
+
+  <build>
+    <sourceDirectory>src/main/scala</sourceDirectory>
+    <testSourceDirectory>src/test/scala</testSourceDirectory>
+    <plugins>
+    <plugin>
+	    <inherited>true</inherited>
+	    <groupId>com.mycila.maven-license-plugin</groupId>
+	    <artifactId>maven-license-plugin</artifactId>
+	    <version>1.9.0</version>
+	    <configuration>
+	        <strictCheck>true</strictCheck>
+	        <header>${project.basedir}/../LICENCE_HEADER.txt</header>
+	        <failIfMissing>true</failIfMissing>
+	        <aggregate>true</aggregate>
+	        <properties>
+	        	<projectname>Machine of Peano</projectname>
+	        	<projecturl>http://mosser.github.com/PeanoMachine/</projecturl>
+	        	<organization>SINTEF ICT</organization>
+	            <owner>Sebastien Mosser</owner>
+	            <year>${project.inceptionYear}</year>
+	            <email>sebastien.mosser@sintef.no</email>
+	            <artid>${project.artifactId}</artid>
+	        </properties>
+	        <mapping>
+	          <scala>JAVADOC_STYLE</scala>
+	          <conf>SCRIPT_STYLE</conf>
+	        </mapping>
+	        <excludes>
+	            <exclude>.gitignore</exclude>
+	            <exclude>.cache</exclude>
+	            <exclude>*.txt</exclude>
+	            <exclude>**/src/test/resources/**</exclude>
+	            <exclude>**/src/test/data/**</exclude>
+	        </excludes>
+	    </configuration>
+	    <executions>
+	        <execution>
+	            <id>check-headers</id>
+	            <phase>verify</phase>
+	            <goals>
+	                <goal>check</goal>
+	            </goals>
+	        </execution>
+	    </executions>
+	  </plugin>
+      <plugin>
+        <groupId>org.scala-tools</groupId>
+        <artifactId>maven-scala-plugin</artifactId>
+        <version>2.15.0</version>
+        <executions>
+          <execution>
+            <goals>
+              <goal>compile</goal>
+              <goal>testCompile</goal>
+            </goals>
+            <configuration>
+              <args>
+                <arg>-make:transitive</arg>
+                <arg>-dependencyfile</arg>
+                <arg>${project.build.directory}/.scala_dependencies</arg>
+              </args>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <version>2.6</version>
+        <configuration>
+          <useFile>false</useFile>
+          <disableXmlReport>true</disableXmlReport>
+          <!-- If you have classpath issue like NoDefClassError,... -->
+          <!-- useManifestOnlyJar>false</useManifestOnlyJar -->
+          <includes>
+            <include>**/*Test.*</include>
+            <include>**/*Suite.*</include>
+          </includes>
+        </configuration>
+      </plugin>
+    </plugins>
+  </build>
+</project>
