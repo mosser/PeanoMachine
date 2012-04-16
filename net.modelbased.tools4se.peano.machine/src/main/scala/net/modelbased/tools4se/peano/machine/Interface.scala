@@ -24,15 +24,15 @@ package net.modelbased.tools4se.peano.machine
 
 abstract trait AxiomsOfPeano {
 
-  def isZero(n: Integer): Boolean
-  def pred(n: Integer): Integer
-  def succ(n: Integer): Integer
+  def isZero(n: Int): Boolean
+  def pred(n: Int): Int
+  def succ(n: Int): Int
  
 }
 
 abstract trait OperationsOfPeano extends AxiomsOfPeano {
-  def add(a: Integer, b: Integer): Integer
-  def mult(a: Integer, b: Integer): Integer
+  def add(a: Int, b: Int): Int
+  def mult(a: Int, b: Int): Int
 }
 
 trait MachineOFPeano extends AxiomsOfPeano with OperationsOfPeano

@@ -25,29 +25,28 @@ package net.modelbased.tools4se.peano.machine
 
 
 class Faulty extends MachineOFPeano {
-  def isZero(n: Integer): Boolean = { throw new RuntimeException("Not yet Implemented") }
-  def pred(n: Integer): Integer = { throw new RuntimeException("Not yet Implemented") }
-  def succ(n: Integer): Integer = { throw new RuntimeException("Not yet Implemented") }
-  def add(a: Integer, b: Integer): Integer = { throw new RuntimeException("Not yet Implemented") }
-  def mult(a: Integer, b: Integer): Integer = { throw new RuntimeException("Not yet Implemented") }
+  def isZero(n: Int): Boolean = { throw new RuntimeException("Not yet Implemented") }
+  def pred(n: Int): Int = { throw new RuntimeException("Not yet Implemented") }
+  def succ(n: Int): Int = { throw new RuntimeException("Not yet Implemented") }
+  def add(a: Int, b: Int): Int = { throw new RuntimeException("Not yet Implemented") }
+  def mult(a: Int, b: Int): Int = { throw new RuntimeException("Not yet Implemented") }
 }
-
 
 class Recursive extends MachineOFPeano {
   
-  def isZero(n: Integer): Boolean = (0 == n) 
+  def isZero(n: Int): Boolean = (0 == n) 
   
-  def pred(n: Integer): Integer = { require(n > 0,"Out of domain!"); (n - 1) }
+  def pred(n: Int): Int = { require(n > 0,"Out of domain!"); (n - 1) }
   
-  def succ(n: Integer): Integer = { require(n >= 0,"Out of domain!");  (n + 1) }
+  def succ(n: Int): Int = { require(n >= 0,"Out of domain!");  (n + 1) }
   
-  def add(a: Integer, b: Integer): Integer = { 
+  def add(a: Int, b: Int): Int = { 
     require(a >= 0, "Out of domain!")
     require(b >= 0, "Out of domain!")
     if (isZero(b)) a else add(succ(a),pred(b))
   }
   
-  def mult(a: Integer, b: Integer): Integer = {
+  def mult(a: Int, b: Int): Int = {
     require(a >= 0, "Out of domain!")
     require(b >= 0, "Out of domain!")
     if (isZero(b)) 0 else add(a, mult(a, pred(b)))
