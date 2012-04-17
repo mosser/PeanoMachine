@@ -32,13 +32,13 @@ class Faulty extends MachineOFPeano {
   def mult(a: Int, b: Int): Int = { throw new RuntimeException("Not yet Implemented") }
 }
 
-class Recursive extends MachineOFPeano {
+class Recursive extends MachineOFPeano 
   
   def isZero(n: Int): Boolean = (0 == n) 
   
   def pred(n: Int): Int = { require(n >= 0,"Out of domain!"); (n - 1) }
   
-  def succ(n: Int): Int = { require(n > 0,"Out of domain!");  (n + 1) }
+  def succ(n: Int): Int = { require(n > 0, "Out of domain!");  (n + 1) }
   
   def add(a: Int, b: Int): Int = { 
     require(a >= 0, "Out of domain!")
