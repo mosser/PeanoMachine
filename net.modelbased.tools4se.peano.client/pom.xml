@@ -60,6 +60,13 @@
             </configuration>
           </execution>
         </executions>
+        <configuration>
+          <launchers>
+            <launcher>
+              <mainClass>net.modelbased.tools4se.peano.client.Main</mainClass>
+            </launcher>
+          </launchers>
+        </configuration>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
