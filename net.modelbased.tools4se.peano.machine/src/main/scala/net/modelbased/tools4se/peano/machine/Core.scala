@@ -41,6 +41,7 @@ class Recursive extends MachineOFPeano {
   def succ(n: Int): Int = { require(n >= 0, "Out of domain!");  (n + 1) }
   
   def add(a: Int, b: Int): Int = { 
+    println("test")
     require(a >= 0, "Out of domain!")
     require(b >= 0, "Out of domain!")
     if (isZero(b)) a else add(succ(a),pred(b))
